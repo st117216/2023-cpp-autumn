@@ -1,14 +1,13 @@
-﻿#include<fstream>
-#include<iostream>
-using namespace std;
+﻿#include<iostream>
+
 int main()
 {
 	int a, b;
-	ifstream fin("INPUT.txt");
-	fin >> a;
+	
+	std::cin >> a;
 	b = (a * 100) + 90 + (9 - a);
-	ofstream fout("output.txt");
-	fout << b;
+	
+	std::cout << b;
 
 }
     

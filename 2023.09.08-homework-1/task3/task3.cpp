@@ -1,14 +1,13 @@
-﻿#include<fstream>
-#include<iostream>
-using namespace std;
+﻿#include<iostream>
+#include<iomanip>
 int main()
-{
-	int a, b;
-	ifstream fin("INPUT.txt");
-	fin >> a;
-	a = int(a / 10);
-	b = a * (a + 1) * 100 + 25;
-	ofstream fout("output.txt");
-	fout << b;
-
+{   
+	double  a,c;
+	 
+	std::cin >> a;
+	c = floor(a / 10);
+    double b;
+	b = (c * (c + 1) * 100) + 25;
+	std::cout << std::fixed<< std::setprecision(0) <<b;
+	 
 }

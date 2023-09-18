@@ -1,12 +1,9 @@
-﻿#include<fstream>
-using namespace std;
+﻿#include<iostream>
 int main()
 {
-	int n,s;
-	ifstream fin("INPUT.txt");
-	fin >> n;
-	ofstream fout("OUTPUT.txt");
-	s = (1 + n) / 2 * n;
-	fout << s;
+	int n, s;
+	std::cin >> n;
+	s = (1 + n)* n /2 ;
+	std::cout << s;
 }
 
