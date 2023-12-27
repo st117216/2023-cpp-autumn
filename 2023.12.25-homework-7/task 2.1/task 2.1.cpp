@@ -5,61 +5,58 @@
 #include<cstring>
 #include<string>
 #include<fstream>
-
-
-
 //-----------------------------------
-char* strcat_new(char* s1, char* s2)
+char* strcat_new(char* s1, char* s2)//сложение строк
 {
 
-	size_t len1 = strlen(s1);
-	size_t len2 = strlen(s2);
+	size_t len1 = strlen(s1);//узнали сколько памяти занимает первая строка
+	size_t len2 = strlen(s2);//узнали сколько памяти занимает вторая строка
 
-	char* result = (char*)malloc(len1 + len2 + 1);
+	char* result = (char*)malloc(len1 + len2 + 1);//выделяем память под результат слодения строк
 
-	if (!result) {
+	if (!result) {//проверям, удалось ли выделить память
 		fprintf(stderr, "malloc() failed: insufficient memory!\n");
 		return NULL;
 	}
-	memcpy(result, s1, len1);
-	memcpy(result + len1, s2, len2 + 1);
+	memcpy(result, s1, len1);//копируем первую строку в "новую память"
+	memcpy(result + len1, s2, len2 + 1);//дописываем вторую строку сразу после первой
 	return result;
 }
 
-char* strmult_new(char* s, int k)
+char* strmult_new(char* s, int k)//"умножаем" строку
 {
-	size_t len = strlen(s);
-	char* result = (char*)malloc((len * k) + 1);
+	size_t len = strlen(s);//узнали сколько памяти занимает первая строка
+	char* result = (char*)malloc((len * k) + 1);//выделяем память под новую строку
 	for (int i = 0; i < k; i++)
 	{
-		memcpy(result + len * i, s, len + 1);
+		memcpy(result + len * i, s, len + 1);//дописываем столько раз, на сколько нужно "умножить"
 
 	}
 	return result;
 }
 
-char* strstr_new(char* s, char* sub)
+char* strstr_new(char* s, char* sub)//найти вхождение 
 {
-	int len = strlen(s);
-	int len_sub = strlen(sub);
-	char* point = NULL;
-	if (len < len_sub) {
+	int len = strlen(s);// определили длину строки
+	int len_sub = strlen(sub);// определили длину подстроки
+	char* point = NULL;//указатель на позыцую вхождения
+	if (len < len_sub) {//исключам, что подстрока больше самой строки
 		printf("Error:substr>str\n");
 	}
 	else
 	{
 		for (int i = 0; i < (len - len_sub); i++)
 		{
-			if (s[i] == sub[0])
+			if (s[i] == sub[0])//находим первое вхождение подстроки
 			{
-				point = &s[i];
-				for (int j = 1; j < len_sub; j++)
+				point = &s[i];// "ставим" на него указатель
+				for (int j = 1; j < len_sub; j++)//проверяем последующие символы
 				{
 					if ((i + j) < len)
 					{
-						if ((s[i + j] != sub[j]))
+						if ((s[i + j] != sub[j]))//нашли не совпадающие
 						{
-							point = NULL;
+							point = NULL;//"обнуляем " указатель
 
 						}
 					}
@@ -70,21 +67,21 @@ char* strstr_new(char* s, char* sub)
 	return point;
 }
 
-char* substr_new(char* s, int pos, int count)
+char* substr_new(char* s, int pos, int count)//выделяем подстроку(с какой позиции и сколько символов)
 {
-	char* result = (char*)malloc((count)+1);
+	char* result = (char*)malloc((count)+1);//выделяем память 
 	for (int i = 0; i < count; i++)
 	{
-		result[i] = s[pos + i];
+		result[i] = s[pos + i];// копируем символы
 	}
-	result[count] = 0;
+	result[count] = 0;// завершение строки 
 	return result;
 }
 
-int strcmp_new(char* s1, char* s2)
+int strcmp_new(char* s1, char* s2) //сравнение строк
 {
 
-	while (*s1 != NULL && *s2 != NULL)
+	while (*s1 != NULL && *s2 != NULL)// начинаем сравнивать посимвольно
 	{
 		if (*s1 < *s2)
 		{
@@ -94,7 +91,7 @@ int strcmp_new(char* s1, char* s2)
 		{
 			return 1;
 		}
-		s1++;
+		s1++;//предвигаем указатели
 		s2++;
 	}
 	return 0;
